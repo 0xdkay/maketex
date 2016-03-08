@@ -56,6 +56,7 @@ spell: ## run a spell check
 
 clean: ## clean up
 	@bin/latexrun --clean
+	rm -rf latex.out
 
 distclean: clean ## clean up completely
 	rm -f code/*.tex
