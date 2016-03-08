@@ -3,7 +3,7 @@ DIFF ?= HEAD^
 CODE := $(addsuffix .tex,$(filter-out %.tex,$(wildcard code/*)))
 FIGS := $(patsubst %.svg,%.pdf,$(wildcard fig/*.svg))
 PLOT := $(patsubst %.gp,%.tex,$(wildcard data/*.gp))
-DEPS := rev.tex code/fmt.tex abstract.txt $(CODE) $(FIGS) $(PLOT)
+DEPS := rev.tex code/fmt.tex $(CODE) $(FIGS) $(PLOT)
 BTEX := --bibtex-args="-min-crossrefs=99"
 SHELL:= $(shell echo $$SHELL)
 
@@ -56,7 +56,6 @@ spell: ## run a spell check
 
 clean: ## clean up
 	@bin/latexrun --clean
-	rm -f abstract.txt
 
 distclean: clean ## clean up completely
 	rm -f code/*.tex
@@ -64,8 +63,5 @@ distclean: clean ## clean up completely
 init: ## init writing (discarding example)
 	rm -f {code,fig,data}/ex-*
 	perl -pi -e 's/^\\input{ex}/% \\input{ex}/g' $(MAIN).tex
-
-abstract.txt: abstract.tex $(MAIN).tex ## generate abstract.txt
-	@bin/mkabstract $(MAIN).tex $< | fmt -w72 > $@
 
 .PHONY: all help FORCE draft clean spell distclean init
