@@ -1,6 +1,6 @@
 MAIN ?= p
 DIFF ?= HEAD^
-CODE := $(addsuffix .tex,$(filter-out %.tex,$(wildcard code/*)))
+CODE := $(addsuffix .tex,$(filter-out %.tex,$(wildcard code/*\.*)))
 FIGS := $(patsubst %.svg,%.pdf,$(wildcard fig/*.svg))
 PLOT := $(patsubst %.gp,%.tex,$(wildcard data/*.gp))
 DEPS := rev.tex code/fmt.tex $(CODE) $(FIGS) $(PLOT)
@@ -28,7 +28,7 @@ rev.tex: FORCE
 	   "$(shell git log -1 --format='%ci' HEAD)" > $@
 
 code/%.tex: code/% ## build highlighted tex code from source code
-	pygmentize -P tabsize=4 -P mathescape -f latex $^ | mark.py > $@
+	pygmentize -P tabsize=4 -P mathescape -f latex $^ | bin/mark.py > $@
 
 code/fmt.tex: ## generate color table
 	pygmentize -f latex -S default > $@
