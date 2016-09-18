@@ -3,8 +3,10 @@
 \newcommand{\URL}{\url}
 \newcommand{\cc}[1]{\mbox{\smaller[0.5]\texttt{#1}}}
 
+% enable the below for ACM camera ready
 %\clubpenalty=10000
 %\widowpenalty=10000
+%\renewcommand*{\bibfont}{\raggedright}
 
 %\linespread{1.2}
 
@@ -37,6 +39,7 @@
 % sema
 \newcommand{\shl}{\ \cc{<}\cc{<}\ }
 \newcommand{\shr}{\ \cc{>}\cc{>}\ }
+\newcommand{\x}{$\times$\xspace}
 
 \if 0
 \renewcommand{\topfraction}{0.9}
@@ -54,16 +57,6 @@
 \newif\ifdraft\drafttrue
 \newif\ifnotes\notestrue
 \ifdraft\else\notesfalse\fi
-
-% ref. http://en.wikibooks.org/wiki/LaTeX/Colors
-\newcommand{\DK}[1]{\textcolor{cyan}{DK: #1}}
-\newcommand{\XXX}[1]{\textcolor{red}{XXX: #1}}
-\newcommand{\TODO}[1]{\textcolor{Melon}{TODO: #1}}
-
-% hide comments
-% \renewcommand{\DK}[1]{\ignorespaces}
-% \renewcommand{\XXX}[1]{\ignorespaces}
-% \renewcommand{\TODO}[1]{\ignorespaces}
 
 %% Ensure ligatures (e.g., ``fine official flag'') can be copy/pasted from PDF.
 \input{glyphtounicode}
@@ -111,7 +104,35 @@
 \noindent{\bf \IfEndWith{#1}{.}{#1}{#1.}}
 }
 
+\newcommand{\PS}[1]{
+\medskip
+\noindent - \textit{\seqsplit{#1}}
+\medskip
+}
+
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
 \newcommand{\V}{\checkmark}
+\newcommand{\X}{{\footnotesize $\times$}\xspace}
+\renewcommand{\O}{\phantom{0}}
+
+%% units
+\newcommand{\B}{\,\text{B}\xspace}
+\newcommand{\K}{\,\text{K}\xspace}
+\newcommand{\M}{\,\text{M}\xspace}
+\newcommand{\T}{\,\text{T}\xspace}
+\newcommand{\KB}{\,\text{KB}\xspace}
+\newcommand{\MB}{\,\text{MB}\xspace}
+\newcommand{\GB}{\,\text{GB}\xspace}
+\newcommand{\TB}{\,\text{TB}\xspace}
+
+\newcommand{\Bs}{\,\text{B/s}\xspace}
+\newcommand{\KBs}{\,\text{KB/s}\xspace}
+\newcommand{\MBs}{\,\text{MB/s}\xspace}
+\newcommand{\GBs}{\,\text{GB/s}\xspace}
+
+\newcommand{\etal}{\textit{et al}.\xspace}
+\newcommand{\ie}{\textit{i}.\textit{e}.}
+\newcommand{\eg}{\textit{e}.\textit{g}.}
 
 
 \lstdefinelanguage
@@ -124,11 +145,6 @@
                   r8,r8d,r8w,r8b,r9,r9d,r9w,r9b}} % etc.
 
 
-\newcommand{\PS}[1]{
-\medskip
-\noindent - \textit{\seqsplit{#1}}
-\medskip
-}
 
 \usepackage{l3regex}
 \ExplSyntaxOn
